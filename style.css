@@ -1,0 +1,22 @@
+.row{
+    margin-left: 0;
+}
+
+#banner{
+    border-top: 3px solid #418FDE;
+    border-bottom: 3px solid #418FDE;
+}
+
+#MyMenu a{
+    color: grey;
+}
+
+#MyMenu #app{
+    font-size: 18px;
+}
+
+#Supervisados, #MiGdD, #Terceros{
+    margin-bottom: 0;
+    height: 100%;
+    padding-top: 3px
+}

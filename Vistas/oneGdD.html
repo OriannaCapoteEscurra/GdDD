@@ -1,0 +1,422 @@
+<!-- Encabezado del GdD, a quien pertenece y datos basicos del colaborador -->
+<h1 style="padding-left: 30px">Gestión de Desempeño de:</h1>  
+<div class="row" style="margin-bottom: 20px">
+    <div class="col-sm-1"> </div>
+    <div class="col-sm-3">
+        <p> Nombre completo </p>
+        <p> Cedula </p>
+        <p> Departemento </p>
+        <p> cargo </p>
+    </div>
+    <div class="col-sm-4">
+
+    </div>
+    <div class="col-sm-4">
+        <p> Período </p>
+        <p> Semestre </p>
+        <p> Coordinador | Supervisor </p> <!-- Quien evalua al colaborador -->
+    </div>
+</div>
+
+<!-- Acordion = Resumen de un GdD -->
+<div class="container">
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="/oneGdD/#collapse1">Objetivos Individuales</a>
+          </h4>
+        </div>
+        <!-- Objetivos Individuales -->
+        <div id="collapse1" class="panel-collapse collapse">
+          <div class="panel-body">
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th style="text-align:center">Fecha</th>
+                          <th style="text-align:center">Objetivo Estrategico</th>
+                          <th style="text-align:center">Objetivo Individual</th>
+                          <th style="text-align:center">Indicador</th>
+                          <th style="text-align:center">Minimo</th>
+                          <th style="text-align:center">Meta</th>
+                          <th style="text-align:center">Maximo</th>
+                          <th style="text-align:center">Incide</th>                          
+                          <th style="text-align:center">Cumplimiento</th>
+                          <th style="text-align:center">Resultado</th>
+                          <th style="text-align:center" ng-if="option == true">Opciones</th> <!-- ng-if="usuario esta en mis supervisados" -->
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="objs in ObjInds">
+                      <td>{{objs.fecha}}</td>
+                      <td>{{objs.objest}}</td>
+                      <td>{{objs.objInd}}</td>
+                      <td>{{objs.ind}}</td>
+                      <td>{{objs.min}}</td>                
+                      <td>{{objs.meta}}</td>
+                      <td>{{objs.max}}</td>
+                      <td>{{objs.incide}}</td>
+                      <td>{{objs.cumplimiento}}</td>
+                      <td>{{objs.result}}</td>
+                      <td ng-if="option == true">
+                          <button class="btn btn-success" ng-click="ModalObj($index)">
+                              <i class="icon-edit"></i>
+                          </button> 
+                          <button class="btn btn-danger">
+                              <i class="icon-minus-sign"></i>
+                          </button>
+                      </td>   <!-- Editar o Eliminar un Objetivo -->
+                  </tr>
+                  </tbody>
+              </table>
+              <!-- Agregar un objetivo Individuale -->  
+              <button class="btn btn-success" ng-click="ModalObj(-1)" ng-hide="! option">
+                <i class="icon-plus-sign"></i> Añadir
+            </button>  
+          </div>
+        </div>
+      </div>
+      <!-- Competencias del colaborador -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="/oneGdD/#collapse2">Competencias</a>
+          </h4>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse">
+          <div class="panel-body">
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th style="text-align:center">Fecha</th>    
+                          <th style="text-align:center">Competencia</th>
+                          <th style="text-align:center">Indicador</th>
+                          <th style="text-align:center">Incide</th>
+                          <th style="text-align:center">Cumplimiento</th>
+                          <th style="text-align:center">Resultado</th>
+                          <th style="text-align:center" ng-if="option == true">Opciones</th> <!-- ng-if="usuario esta en mis supervisados" -->
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="comps in CompInds">
+                      <td>{{comps.fecha}}</td>
+                      <td>{{comps.competencia}}</td>
+                      <td>{{comps.ind}}</td>                      
+                      <td>{{comps.incide}}</td>                      
+                      <td>{{comps.cumplimiento}}</td>
+                      <td>{{comps.result}}</td>
+                      <td ng-if="option == true">   
+                        <button class="btn btn-success" ng-click="ModalComp($index)">
+                            <i class="icon-edit"></i>
+                        </button> 
+                        <button class="btn btn-danger">
+                            <i class="icon-minus-sign"></i>
+                        </button>
+                      </td>
+                  </tr>
+                  </tbody>
+              </table> 
+              <!-- Agregar nueva competencia -->
+              <button class="btn btn-success" ng-click="ModalComp(-1)" ng-hide="! option">
+                <i class="icon-plus-sign icon-white"></i> Añadir
+            </button>  
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="/oneGdD/#collapse3">Apoyo y Compromiso</a>
+          </h4>
+        </div>
+        <div id="collapse3" class="panel-collapse collapse">
+          <div class="panel-body">
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th style="text-align:center">Fecha</th>
+                          <th style="text-align:center">Apoyo del Supervisor</th>
+                          <th style="text-align:center">Compromiso del colaborador</th>                          
+                          <th style="text-align:center" ng-if="option == true">Opciones</th> <!-- ng-if="usuario esta en mis supervisados" -->
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr ng-repeat="apycom in ApYCom">
+                          <td>{{apycom.fecha}}</td>
+                          <td>{{apycom.apoyo}}</td>                      
+                          <td>{{apycom.compromiso}}</td>  
+                          <td ng-if="option == true">
+                              <button class="btn btn-success" ng-click="ApyCom($index)">
+                                  <i class="icon-edit"></i>
+                              </button> 
+                              <button class="btn btn-danger" >
+                                  <i class="icon-minus-sign"></i>
+                              </button>
+                          </td>                        
+                      </tr>
+                  </tbody>
+              </table> 
+              <!-- Agregar apoyo y compromiso -->  
+              <button class="btn btn-success" ng-click="ApyCom(-1)" ng-hide="! option">
+                  <i class="icon-plus-sign"></i> Añadir
+              </button>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="/oneGdD/#collapse4">Seguimiento</a>
+          </h4>
+        </div>
+        <div id="collapse4" class="panel-collapse collapse">
+          <div class="panel-body">
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th style="text-align:center">Fecha</th>                          
+                          <th style="text-align:center">Tipo de Seguimiento</th>
+                          <th style="text-align:center">Referencia</th>
+                          <th style="text-align:center">¿Qué debe continuar haciendo el colaborador?</th>
+                          <th style="text-align:center">¿Qué debe dejar de hacer el colaborador?</th>
+                          <th style="text-align:center">¿Qué debe empezar hacer el colaborador?</th>
+                          <th style="text-align:center" ng-if="option == true">Opciones</th> <!-- ng-if="usuario esta en mis supervisados" -->
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr ng-repeat="seg in Segs">
+                          <td>{{seg.fecha}}</td>
+                          <td>{{seg.tipo}}</td>                      
+                          <td>{{seg.ref}}</td>
+                          <td>{{seg.continuar}}</td>
+                          <td>{{seg.dejar}}</td>
+                          <td>{{seg.comenzar}}</td>
+                          <td ng-if="option == true">
+                              <button class="btn btn-success">
+                                  <i class="icon-edit" ng-click="AggObj($index)"></i>
+                              </button> 
+                              <button class="btn btn-danger">
+                                  <i class="icon-minus-sign"></i>
+                              </button>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table> 
+              <!-- Agregar un nuevo seguimiento -->  
+              <button class="btn btn-success" ng-click="AggObj(-1)" ng-hide="! option">
+                  <i class="icon-plus-sign"></i> Añadir
+              </button>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="/oneGdD/#collapse5">Evaluación</a>
+          </h4>
+        </div>
+        <div id="collapse5" class="panel-collapse collapse">
+          <div class="panel-body">
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th style="text-align:center">Fecha</th>                      
+                          <th style="text-align:center">Comentarios del Colaborador</th>
+                          <th style="text-align:center">Comentarios del Coordinador</th>
+                          <th style="text-align:center">Comentarios del Supervisor</th>                          
+                          <th style="text-align:center" ng-if="option == true">Opciones</th> <!-- ng-if="usuario esta en mis supervisados" -->
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr ng-repeat="ev in Evaluacion">
+                          <td>{{ev.fecha}}</td>
+                          <td>{{ev.colaborador}}</td>                      
+                          <td>{{ev.coordinador}}</td>
+                          <td>{{ev.supervisor}}</td>                          
+                          <td ng-if="option == true">
+                              <button class="btn btn-success">
+                                  <i class="icon-edit"></i>
+                              </button> 
+                              <button class="btn btn-danger">
+                                  <i class="icon-minus-sign"></i>
+                              </button>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>               
+          </div>
+        </div>
+      </div>
+    </div> 
+</div>
+
+<!-------------------------------------------------- Modal Objetivos -------------------------------------------------->
+  <script type="text/ng-template" id="ModalObjs">  
+    <div>
+        <div class="modal-header">
+        <h3> {{title}} </h3>
+    </div>
+    <div class="modal-body">
+      <form> 
+          <div class="row"> 
+              <div class="col-sm-6" style="text-align: center">
+                  <label for="F_creacion"> Fecha </label>
+              </div>
+              <div class="col-sm-6"> 
+                <input id="F_creacion" type="date" ng-Model ="F_creacion">
+              </div>
+            </div>
+        <div class="row">
+          <div class= "col-sm-6" style="text-align: center">
+            <label for="objEst"> Objetivo Estrategico</label>
+          </div>
+          <div class="col-sm-6">
+            <select id="objEst" > </select> <!-- ng-option= obj for obj in objEst-->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6" style="text-align: center">
+            <label for="objInd" ng-model="objInd"> Objetivo Individual</label>
+          </div>
+          <div class="col-sm-6">
+            <textarea id="objInd" rows="2", cols="30" ng-model="objInd"> </textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6" style="text-align: center">
+            <label for="indicador"> Indicador </label>
+          </div>
+          <div class="col-sm-6">
+            <textarea id="indicador" rows="2", cols="30" ng-model="indicador"> </textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6" style="text-align: center">
+            <label for="min"> Minimo </label>
+          </div>
+          <div class="col-sm-6">
+            <input id="min" ng-model="min"> %
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6" style="text-align: center">
+              <label for="meta"> Meta </label>
+            </div>
+            <div class="col-sm-6">
+              <input id="meta" ng-model="meta"> %
+            </div>
+        </div>
+        <div class="row">
+              <div class="col-sm-6" style="text-align: center">
+                <label for="max"> Maximo </label>
+              </div>
+              <div class="col-sm-6">
+                <input id="max" ng-model="max"> %
+              </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6" style="text-align: center">
+              <label for="incide"> Incide </label>
+            </div>
+            <div class="col-sm-6">
+              <input id="incide" ng-model="incide"> % de 100%
+            </div>
+        </div>  
+      </form>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" class="btn btn-success" ng-click="crearObj()" value="Crear">
+        <button class="btn btn-danger" ng-click="$dismiss()">Cancelar </button>
+    </div>
+    </div>
+</script>
+
+<!-------------------------------------------------- Modal Competencia -------------------------------------------------->
+    <script type="text/ng-template" id="ModalCompetencia">  
+      <div ng-controller="ModalCompController">
+        <div class="modal-header">
+          <h3>{{title}}</h3>
+      </div>
+      <div class="modal-body">
+        <form> 
+          <div class="row"> 
+            <div class="col-sm-6" style="text-align: center">
+                <label for="F_creacion"> Fecha </label>
+            </div>
+            <div class="col-sm-6"> 
+              <input type="date" id="F_creacion">
+            </div>
+          </div>
+          <div class="row">
+            <div class= "col-sm-6" style="text-align: center">
+              <label for="comp"> Competencia </label>
+            </div>
+            <div class="col-sm-6">
+              <select id="comp" > </select> <!-- ng-option= obj for obj in objEst-->
+            </div>
+          </div>          
+          <div class="row">
+            <div class="col-sm-6" style="text-align: center">
+              <label for="indicador"> Indicador </label>
+            </div>
+            <div class="col-sm-6">
+              <textarea id="indicador" rows="2", cols="30" ng-model="indicador"> </textarea>
+            </div>
+          </div>          
+          <div class="row">
+              <div class="col-sm-6" style="text-align: center">
+                <label for="incide"> Incide </label>
+              </div>
+              <div class="col-sm-6">
+                <input id="incide" ng-model="incide"> % de 100%
+              </div>
+          </div>  
+        </form>
+      </div>
+      <div class="modal-footer">
+          <input type="submit" class="btn btn-success" ng-click="crearComp()" value="Crear">
+          <button class="btn btn-danger" ng-click="$dismiss()">Cancelar </button>
+      </div>
+      </div>
+</script>
+
+<!-------------------------------------------------- Modal Apoyo y Compromisos -------------------------------------------------->
+<script type="text/ng-template" id="Modal_Apoyo_Compromiso">  
+  <div>
+      <div class="modal-header">
+      <h3>Nuevo Apoyo y Compromiso</h3>
+  </div>
+  <div class="modal-body">
+    <form>
+        <div class="row"> 
+            <div class="col-sm-6" style="text-align: center">
+                <label for="F_creacion"> Fecha </label>
+            </div>
+            <div class="col-sm-6"> 
+              <input type="date" ng-model="F_creacion" id="date">
+            </div>
+          </div>         
+      <div class="row">
+        <div class="col-sm-6" style="text-align: center">
+          <label for="Apoyo"> Apoyo </label>
+        </div>
+        <div class="col-sm-6">
+          <textarea id="apoyo" rows="2", cols="30" ng-model="apoyo"> </textarea>
+        </div>
+      </div>          
+      <div class="row">
+          <div class="col-sm-6" style="text-align: center">
+            <label for="compromiso"> Compromiso </label>
+          </div>
+          <div class="col-sm-6">
+            <textarea id="compromiso" rows="2", cols="30" ng-model="compromiso"> </textarea>
+          </div>
+        </div>          
+    </form>
+  </div>
+  <div class="modal-footer">
+      <input type="submit" class="btn btn-success" ng-click="crearApyCom()" value="Crear">
+      <button class="btn btn-danger" ng-click="$dismiss()">Cancelar </button>
+  </div>
+  </div>
+</script>

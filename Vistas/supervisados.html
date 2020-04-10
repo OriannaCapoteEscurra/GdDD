@@ -1,0 +1,56 @@
+<h1 style="padding-left: 30px">Mi Supervisados</h1>  
+<div>
+    <div class="row" style="margin-top: 30px">
+        <div class="col-sm-2"> </div>
+        <div class="col-sm-1"> 
+            <select >
+                <option> Todos </option>
+            </select> <!-- ng-options="emp for emp in empleados" -->
+        </div>
+        <div class="col-sm-1"> </div>
+        <div class="col-sm-1"> 
+                <select > 
+                    <option> 2018-2019 </option>
+                </select> <!--ng-options="period for period in periods"-->
+        </div>
+        <div class="col-sm-1"> </div>
+        <div class="col-sm-1"> 
+                <select >
+                    <option value= "st_inicial"> Inicializando </option>
+                    <option value= "st_encurso"> En Curso </option>
+                    <option value= "st_finalizada"> Finalizada </option>
+                </select> 
+        </div>
+        <div class="col-sm-2"> </div>
+        <div class="col-sm-1"> 
+            <input type="button" value="Buscar">  
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 30px"> 
+        <div class="col-md-1"> </div>
+        <div class="col-md-10">
+            <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center">Empleado</th>
+                            <th style="text-align:center">Período</th>
+                            <th style="text-align:center">Estatus</th>                            
+                            <th style="text-align:center">Opciones</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <tr ng-repeat="gdd in GdD">
+                                <td>{{gdd.nombreEmpleado}} </td>
+                                <td>{{gdd.periodo}}</td>
+                                <td>{{gdd.status}}</td>
+                                <td><span ng-click="editarGdD($index, "/oneGdD")"> Editar </span> </td> Cambiamos la ruta con $location.path("/oneGdD")
+                        </tr> -->
+                    </tbody>
+                </table>    
+        </div>
+    </div>
+
+</div>
+
+<a href="#/supervisados/oneGdD"> Editar un GdD </a>
